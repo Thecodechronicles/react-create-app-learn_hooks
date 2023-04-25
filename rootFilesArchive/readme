@@ -1,0 +1,19 @@
+
+run 'nvm use 8.17.0' to select node version 8.17.0 before installing all the dependencies in 'indecision-app'
+
+run 'npm install' to install all the dependencies of the app
+
+*******************************
+
+'npm run dev-server' will not produce bundle.js in the file system but it will produce a bundle.js in the memory, it will also serve the index page by running a development server. While, for all other npm commands, a seperate dev server has to be started with 'live-server'
+
+'npm run build' will produce bundle.js in the file system
+
+'npm run dev-server' won't produce bundle.js in the file system. Rather, bundle.js would be produced inside memory and used from there. Hence, in this case, bundle.js won't be visible in the file system (inside explorer file structure)
+
+when using build-babel/build-babel-cp with npm (without webpack) then uncomment the script tags in public/index.html
+
+cp in 'build-babel-cp' means class properties, it will tranform your src/app.js code, which has arrow functions as handlers in the component class, into a javascript code by binding 'this' in a different manner than 'build-babel'. 
+
+Note: non-arrow handler functions in a class are part of prototypes of a constructor function when transformed to a js code. While, arrow handler functions aren't part of prototypes when transformed. Rather, they remain part of constructor functions and access 'this' as a variable in the scope chain of its closure
+
