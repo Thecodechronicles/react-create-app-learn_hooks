@@ -46,7 +46,7 @@ const NotesApp = () => {
 
     useEffect(() => {
         console.log('Hi ! Inside NotesApp');
-        // localStorage.setItem('notes', JSON.stringify(notes));
+        localStorage.setItem('notes', JSON.stringify(notes));
     });
 
     return (
@@ -62,11 +62,9 @@ const NotesApp = () => {
             })
             }
             <form onSubmit={addNotes}>
-                {/* <React.Fragment> */}
-                <input value='{title}' onChange={(e) => setTitle(e.target.value)} />
+                <input value={title} onChange={(e) => setTitle(e.target.value)} />
                 <textarea value={body} onChange={(e) => setBody(e.target.value)} />
                 <button>Add Notes</button>
-                {/* </React.Fragment> */}
             </form>
         </div>
     )
