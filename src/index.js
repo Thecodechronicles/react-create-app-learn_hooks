@@ -49,9 +49,6 @@ const NotesApp = () => {
         // localStorage.setItem('notes', JSON.stringify(notes));
     });
 
-    //     return ([<input type='text'/>
-    //             <button>abc</button>]);
-
     return (
         <div>
             <h2>Notes</h2>
