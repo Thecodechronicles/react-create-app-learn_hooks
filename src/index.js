@@ -22,8 +22,6 @@ console.log('app is running !');
 // }
 
 const NotesApp = () => {
-    // console.log('localNotes: ', JSON.stringify(localStorage.getItem('notes')));
-    // console.log('localNotes: ', typeof localStorage.getItem('notes'));
     const localNotes = localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
@@ -63,23 +61,15 @@ const NotesApp = () => {
                         note={note}
                         removeNote={removeNotes}
                     />
-                    // <div>
-                    //     <h3>{note.title}</h3>
-                    //     <p>{note.body}</p>
-                    //     <button onClick={(e) => {
-                    //         // e.preventDefault();
-                    //         removeNotes(note.title);
-                    //     }}>Remove Notes</button>
-                    // </div>
                 )
             })
             }
             <form onSubmit={addNotes}>
-                <React.Fragment>
-                    <input value='{title}' onChange={(e) => setTitle(e.target.value)} />
-                    <textarea value={body} onChange={(e) => setBody(e.target.value)} />
-                    <button>Add Notes</button>
-                </React.Fragment>
+                {/* <React.Fragment> */}
+                <input value='{title}' onChange={(e) => setTitle(e.target.value)} />
+                <textarea value={body} onChange={(e) => setBody(e.target.value)} />
+                <button>Add Notes</button>
+                {/* </React.Fragment> */}
             </form>
         </div>
     )
