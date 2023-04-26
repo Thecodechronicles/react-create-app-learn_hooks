@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import ReactDOM from 'react-dom';
 import App from './App'
 // import 'normalize.css/normalize.css'
@@ -22,10 +22,11 @@ console.log('app is running !');
 // }
 
 const NotesApp = () => {
-    const localNotes = localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
+    // const localNotes = localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [notes, setNotes] = useState(localNotes || []);
+    // const [notes, setNotes] = useState(localNotes || []);
+    const [notes, setNotes] = useState([]);
 
     const addNotes = (e) => {
         e.preventDefault();
@@ -45,9 +46,20 @@ const NotesApp = () => {
     }
 
     useEffect(() => {
+        console.log('Hi ! Inside getItems');
+        // const notesData = JSON.parse(localStorage.getItem('notes'));
+        const notesData =
+            localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
+
+        if (notesData) {
+            setNotes(notesData);
+        }
+    }, []);
+
+    useEffect(() => {
         console.log('Hi ! Inside NotesApp');
         localStorage.setItem('notes', JSON.stringify(notes));
-    });
+    }, [notes]);
 
     return (
         <div>
@@ -74,7 +86,7 @@ const Notes = ({ note, removeNote }) => {
 
     useEffect(() => {
         console.log('Hi ! Inside Notes');
-    })
+    }, [])
 
     return (
         <div>
