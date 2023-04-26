@@ -71,15 +71,15 @@ var NotesApp = function NotesApp() {
         note: note,
         removeNote: removeNotes
       })
-      // <div>
-      //     <h3>{note.title}</h3>
-      //     <p>{note.body}</p>
-      //     <button onClick={(e) => {
-      //         // e.preventDefault();
-      //         removeNotes(note.title);
-      //     }}>Remove Notes</button>
-      // </div>
-      ;
+        // <div>
+        //     <h3>{note.title}</h3>
+        //     <p>{note.body}</p>
+        //     <button onClick={(e) => {
+        //         // e.preventDefault();
+        //         removeNotes(note.title);
+        //     }}>Remove Notes</button>
+        // </div>
+        ;
     }), /*#__PURE__*/(0, _jsxRuntime.jsx)("form", {
       onSubmit: addNotes,
       children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
