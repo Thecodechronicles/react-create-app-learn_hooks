@@ -1,31 +1,13 @@
-// import React from 'react';
 import { useState, useEffect, useReducer } from 'react'
 import ReactDOM from 'react-dom';
-import App from './App'
 // import 'normalize.css/normalize.css'
 // import './styles/styles.scss'
 
 console.log('app is running !');
 
-// function App() {
-//     console.log('useState', useState);
-//     const [state, setState] = useState('');
-//     const appInner = () => {
-//         setState('Again !!!!');
-//         console.log('appInner working !');
-//     }
-//     return (
-//         <div>
-//             <h2 onClick={appInner}>Hi ! Let's just get started {state}!</h2>
-//         </div>
-//     );
-// }
-
 const NotesApp = () => {
-    // const localNotes = localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    // const [notes, setNotes] = useState(localNotes || []);
     const [notes, setNotes] = useState([]);
 
     const addNotes = (e) => {
@@ -47,7 +29,6 @@ const NotesApp = () => {
 
     useEffect(() => {
         console.log('Hi ! Inside getItems');
-        // const notesData = JSON.parse(localStorage.getItem('notes'));
         const notesData =
             localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
 
@@ -93,7 +74,6 @@ const Notes = ({ note, removeNote }) => {
             <h3>{note.title}</h3>
             <p>{note.body}</p>
             <button onClick={(e) => {
-                // e.preventDefault();
                 removeNote(note.title);
             }}>Remove Notes</button>
         </div>
