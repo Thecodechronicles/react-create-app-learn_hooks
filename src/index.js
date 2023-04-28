@@ -1,23 +1,11 @@
 import { useState, useEffect, useReducer } from 'react'
 import ReactDOM from 'react-dom';
+import notesReducer from './reducer/notesReducer';
+import Notes from './components/Notes';
 // import 'normalize.css/normalize.css'
 // import './styles/styles.scss'
 
 console.log('app is running !');
-
-const notesReducer = (state, action) => {
-    switch (action.type) {
-        case 'POPULATE_NOTES':
-            return action.notes
-        case 'ADD_NOTES':
-            return [
-                ...state,
-                action.notes
-            ]
-        default:
-            state
-    }
-}
 
 const NotesApp = () => {
     const [title, setTitle] = useState('');
@@ -43,7 +31,11 @@ const NotesApp = () => {
         const retainedNotes = notes.filter((note) => {
             return note.title !== title;
         });
-        setNotes(retainedNotes);
+        // setNotes(retainedNotes);
+        dispatch({
+            type: 'REMOVE_NOTES',
+            title
+        })
     }
 
     useEffect(() => {
@@ -65,6 +57,11 @@ const NotesApp = () => {
         localStorage.setItem('notes', JSON.stringify(notes));
     }, [notes]);
 
+    // return ([
+    //     <input type='text' />,
+    //     <button>abc</button>
+    // ]);
+
     return (
         <div>
             <h2>Notes</h2>
@@ -82,27 +79,6 @@ const NotesApp = () => {
                 <textarea value={body} onChange={(e) => setBody(e.target.value)} />
                 <button>Add Notes</button>
             </form>
-        </div>
-    )
-}
-
-const Notes = ({ note, removeNote }) => {
-
-    useEffect(() => {
-        console.log('Hi ! Inside Notes');
-
-        return () => {
-            console.log('Hi ! This component is unmounting..... ');
-        }
-    }, [])
-
-    return (
-        <div>
-            <h3>{note.title}</h3>
-            <p>{note.body}</p>
-            <button onClick={(e) => {
-                removeNote(note.title);
-            }}>Remove Notes</button>
         </div>
     )
 }
