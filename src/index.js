@@ -5,17 +5,36 @@ import ReactDOM from 'react-dom';
 
 console.log('app is running !');
 
+const notesReducer = (state, action) => {
+    switch (action.type) {
+        case 'POPULATE_NOTES':
+            return action.notes
+        case 'ADD_NOTES':
+            return [
+                ...state,
+                action.notes
+            ]
+        default:
+            state
+    }
+}
+
 const NotesApp = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [notes, setNotes] = useState([]);
+    // const [notes, setNotes] = useState([]);
+    const [notes, dispatch] = useReducer(notesReducer, []);
 
     const addNotes = (e) => {
         e.preventDefault();
-        setNotes([
-            ...notes,
-            { title, body }
-        ]);
+        // setNotes([
+        //     ...notes,
+        //     { title, body }
+        // ]);
+        dispatch({
+            type: 'ADD_NOTES',
+            notes: { title, body }
+        })
         setTitle('');
         setBody('');
     }
@@ -33,7 +52,11 @@ const NotesApp = () => {
             localStorage.getItem('notes') === '[]' ? null : JSON.parse(localStorage.getItem('notes'));
 
         if (notesData) {
-            setNotes(notesData);
+            // setNotes(notesData);
+            dispatch({
+                type: 'POPULATE_NOTES',
+                notes: notesData
+            })
         }
     }, []);
 
@@ -67,6 +90,10 @@ const Notes = ({ note, removeNote }) => {
 
     useEffect(() => {
         console.log('Hi ! Inside Notes');
+
+        return () => {
+            console.log('Hi ! This component is unmounting..... ');
+        }
     }, [])
 
     return (
