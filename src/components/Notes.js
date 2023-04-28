@@ -1,13 +1,5 @@
 const Notes = ({ note, removeNote }) => {
 
-    // useEffect(() => {
-    //     console.log('Hi ! Inside Notes');
-
-    //     return () => {
-    //         console.log('Hi ! This component is unmounting..... ');
-    //     }
-    // }, [])
-
     return (
         <div>
             <h3>{note.title}</h3>
